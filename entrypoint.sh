@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-source ./inputs_validation.sh
+source inputs_validation.sh
 source trigger_workflow.sh
 source get_running_workflow_id.sh
 source wait_for_workflow_to_finish.sh
