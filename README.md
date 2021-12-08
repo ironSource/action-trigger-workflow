@@ -30,7 +30,7 @@ jobs:
           repo: REMOTE_REPO_NAME #remote repository name
           github_token: ${{ secrets.PAT_TOKEN }} # your token
           workflow_file_name: ci.yml # remote action workflow file name
-          job_name_substring: "::${{github.ref_name}}:${{ steps.vars.outputs.sha_short }}"
+          job_uuid: "::${{github.ref_name}}:${{ steps.vars.outputs.sha_short }}"
           inputs: '{ "branch_name": "${{github.ref_name}}", "user": "${{github.actor}}", "sha": "${{ steps.vars.outputs.sha_short }}"}'
 
       - name: Done
@@ -46,7 +46,7 @@ jobs:
 | repo               | required | Remote repository name                                            |
 | github_token       | required | Generated Personal Access Token                                   |
 | workflow_file_name | required | Remote action workflow filename (with .extension)                 |
-| job_name_substring | required | Some unique string to identify the running remote action workflow |
+| job_uuid           | required | Some unique string to identify the running remote action workflow |
 | inputs             | required | JSON for remote action inputs                                     |
 
 
@@ -63,17 +63,17 @@ on:
         required: true
       user:
         required: true
-      sha:
+      uuid:
         required: true
 
 jobs:
-  # --- Do Job Initiator for ci_initiator can find it in from API
+  # --- Do Job Initiator for ci_initiator can find it in from API in jpb name
   ci-init:
-    name: 'CI-Init::${{ github.event.inputs.branch_name }}:${{ github.event.inputs.sha }}'
+    name: 'CI-Init::${{ github.event.inputs.uuid }}'
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "Start CI for ${{ github.event.inputs.user }}:${{ github.event.inputs.branch_name }}:${{ github.event.inputs.sha }}"
+          echo "Start CI for ${{ github.event.inputs.user }}:${{ github.event.inputs.uuid }}"
   ...
   ...
   ...
