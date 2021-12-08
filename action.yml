@@ -24,6 +24,7 @@ inputs:
     description: "The reference point. For example, you could use main.yml."
     required: true
   job_name_substring:
+    description: "Some unique string to identify the running remote action workflow"
     required: true
   inputs:
     description: 'Inputs to pass to the workflow, must be a JSON string'
