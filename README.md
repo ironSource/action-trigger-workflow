@@ -1,4 +1,4 @@
-# trigger-action-workflow
+# action-trigger-workflow
 Trigger GitHub action workflow file from another repo and wait to it will be done.
 
 ## Example usage
