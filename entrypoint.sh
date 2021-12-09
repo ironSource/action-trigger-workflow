@@ -10,6 +10,8 @@ GITHUB_API_URL="${API_URL:-https://api.github.com}"
 GITHUB_SERVER_URL="${SERVER_URL:-https://github.com}"
 TRIGGERED_WORKFLOW_ID="null"
 
+ls -la
+
 main() {
   validate_args
 
