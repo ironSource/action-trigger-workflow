@@ -3,7 +3,7 @@ set -e
 
 source /validate_args.sh
 source /trigger_workflow.sh
-source /wait_for_workflow_to_finish.
+source /wait_for_workflow_to_finish.sh
 
 GITHUB_API_URL="${API_URL:-https://api.github.com}"
 GITHUB_SERVER_URL="${SERVER_URL:-https://github.com}"
