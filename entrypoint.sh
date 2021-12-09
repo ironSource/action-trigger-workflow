@@ -151,7 +151,7 @@ wait_for_workflow_to_finish() {
     fi
   fi
   # ---------------------------------------------------------------
-
+}
 
 main() {
   validate_args
