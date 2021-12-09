@@ -32,7 +32,7 @@ jobs:
           github_token: ${{ secrets.PAT_TOKEN }} # your token
           workflow_file_name: ci.yml # remote action workflow file name
           job_uuid: "${{ steps.vars.outputs.uuid }}"
-          inputs: '{ "branch_name": "${{github.ref_name}}", "user": "${{github.actor}}", "uuid": "${{ steps.vars.outputs.uuid }}", "sha": "${{ steps.vars.outputs.uuid }}", "event_name": "${{github.event_name}}", "event_action": "${{github.event.action}}"}'
+          inputs: '{ "branch_name": "${{github.ref_name}}", "user": "${{github.actor}}", "uuid": "${{ steps.vars.outputs.uuid }}", "sha": "${{ steps.vars.outputs.sha_short }}", "event_name": "${{github.event_name}}", "event_action": "${{github.event.action}}"}'
 ```
 
 ### Inputs (with)
