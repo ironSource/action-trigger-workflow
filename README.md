@@ -25,7 +25,7 @@ jobs:
           echo ::set-output name=uuid::${{github.ref_name}}:${GITHUB_SHA::7}:${GITHUB_RUN_ID}
 
       - name: Trigger Remote Action
-        uses: AndyKIron/trigger-action-workflow@main
+        uses: AndyKIron/trigger-action-workflow@v1
         with:
           owner: REMOTE_REPO_OWNER # remote repository owner
           repo: REMOTE_REPO_NAME #remote repository name
@@ -65,17 +65,17 @@ on:
         required: true
       user:
         required: true
-      uuid:
+      job_uuid:
         required: true
 
 jobs:
   # --- Do Job Initiator for ci_initiator can find it in from API in jpb name
   ci-init:
-    name: 'CI-Init::${{ github.event.inputs.uuid }}'
+    name: 'CI-Init::${{ github.event.inputs.job_uuid }}'
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "Start CI for ${{ github.event.inputs.user }}:${{ github.event.inputs.uuid }}"
+          echo "Start CI for ${{ github.event.inputs.user }}:${{ github.event.inputs.job_uuid }}"
   ...
   ...
   ...
