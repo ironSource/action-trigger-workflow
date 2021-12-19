@@ -53,7 +53,7 @@ jobs:
 
 
 3. On remote target action workflow file (ci.yml for example) you need add needed inputs
-4. And one (first) stem must have "name:" with "job_name_substring"
+4. And one (first) stem must have "name:" with "job_uuid"
 
 ```yml
 name: CI-Starter

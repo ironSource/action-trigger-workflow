@@ -20,7 +20,7 @@ inputs:
   workflow_file_name:
     description: "The reference point. For example, you could use main.yml."
     required: true
-  job_name_substring:
+  job_uuid:
     description: "Some unique string to identify the running remote action workflow"
     required: true
   inputs:
