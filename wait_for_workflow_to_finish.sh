@@ -11,7 +11,7 @@ wait_for_workflow_to_finish() {
     -H 'Accept: application/vnd.github.antiope-preview+json' \
     -H "Authorization: Bearer ${INPUT_GITHUB_TOKEN}" | jq '.workflow_runs[] | select(.status=="queued" or .status=="in_progress") | .id')
   # ---------------------------------------------------------------
-  echo "Set workflow ids [${list_workflows_ids}]."
+
   # get triggered workflow id by job name substring included branch name and short SHA of commit
   triggered_workflow_id="null"
   for wf_id in $list_workflows_ids
