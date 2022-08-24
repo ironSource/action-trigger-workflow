@@ -46,6 +46,7 @@ wait_for_workflow_to_finish() {
    # ---------------------------------------------------------------
   last_workflow_url="${GITHUB_SERVER_URL}/${INPUT_OWNER}/${INPUT_REPO}/actions/runs/${triggered_workflow_id}"
   echo "The workflow id is [${triggered_workflow_id}]."
+  echo "The job id is [${monitored_job_id}]."
   echo "The workflow logs can be found at ${last_workflow_url}"
   echo "::set-output name=workflow_id::${triggered_workflow_id}"
   echo "::set-output name=workflow_url::${last_workflow_url}"
