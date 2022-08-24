@@ -59,7 +59,7 @@ wait_for_workflow_to_finish() {
   if [[ ! -z "${INPUT_MONITORED_JOB_NAME}" ]]
   then
     #monitor job name provided
-    job_id=$(curl -X -v GET "${GITHUB_API_URL}/repos/${INPUT_OWNER}/${INPUT_REPO}/actions/runs/${triggered_workflow_id}/jobs" \
+    job_id=$(curl -X GET "${GITHUB_API_URL}/repos/${INPUT_OWNER}/${INPUT_REPO}/actions/runs/${triggered_workflow_id}/jobs" \
       -H 'Accept: application/vnd.github.antiope-preview+json' \
       -H "Authorization: Bearer ${INPUT_GITHUB_TOKEN}" | jq ".jobs[] | select(.name | test(\"${INPUT_MONITORED_JOB_NAME}\")) | .id")
     if  [[ ! -z "$job_id" ]]
