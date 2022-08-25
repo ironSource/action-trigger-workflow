@@ -49,7 +49,14 @@ jobs:
 | wait_interval      | false    | The number of seconds delay between checking for result of run. Default - 10 sec                       |
 | propagate_failure  | false    | Fail current job if downstream job fails. Default - true                                               |
 | wait_workflow      | false    | Wait for workflow to finish. Default - true                                                            |
+| monitored_job_name      | false    | Job name to monitor and return job id for.|
 
+### Outputs:
+| Variable          | Description         |
+|-------------------|----------|
+| workflow_id       | The ID of the workflow that was triggered by this action |
+| workflow_url      | The URL of the workflow that was triggered by this action |
+| job_id            | The Job Id of the requested job to monitor, if none provided then null |
 
 
 3. On remote target action workflow file (ci.yml for example) you need add needed inputs

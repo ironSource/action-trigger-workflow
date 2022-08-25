@@ -19,6 +19,7 @@ wait_for_workflow_to_finish() {
     job_id=$(curl -X GET "${GITHUB_API_URL}/repos/${INPUT_OWNER}/${INPUT_REPO}/actions/runs/$wf_id/jobs" \
       -H 'Accept: application/vnd.github.antiope-preview+json' \
       -H "Authorization: Bearer ${INPUT_GITHUB_TOKEN}" | jq ".jobs[] | select(.name | test(\"${INPUT_JOB_UUID}\")) | .id")
+    
     if  [[ ! -z "$job_id" ]]
     then
       # triggered workflow id found
@@ -26,8 +27,10 @@ wait_for_workflow_to_finish() {
       break
     fi
   done
-  # ---------------------------------------------------------------
+  
+ 
 
+   # ---------------------------------------------------------------
   last_workflow_url="${GITHUB_SERVER_URL}/${INPUT_OWNER}/${INPUT_REPO}/actions/runs/${triggered_workflow_id}"
   echo "The workflow id is [${triggered_workflow_id}]."
   echo "The workflow logs can be found at ${last_workflow_url}"
@@ -51,6 +54,24 @@ wait_for_workflow_to_finish() {
     echo "Checking conclusion [${conclusion}]"
     echo "Checking status [${status}]"
   done
+  # ---------------------------------------------------------------
+
+  if [[ ! -z "${INPUT_MONITORED_JOB_NAME}" ]]
+  then
+    #monitor job name provided
+    job_id=$(curl -X GET "${GITHUB_API_URL}/repos/${INPUT_OWNER}/${INPUT_REPO}/actions/runs/${triggered_workflow_id}/jobs" \
+      -H 'Accept: application/vnd.github.antiope-preview+json' \
+      -H "Authorization: Bearer ${INPUT_GITHUB_TOKEN}" | jq ".jobs[] | select(.name | test(\"${INPUT_MONITORED_JOB_NAME}\")) | .id")
+    if  [[ ! -z "$job_id" ]]
+    then
+      # found the job id
+      monitored_job_id=$job_id
+      break
+    fi
+  fi
+  echo "The job id is [${monitored_job_id}]."
+  echo "::set-output name=job_id::${monitored_job_id}"
+
   # ---------------------------------------------------------------
   # check completed target workflow conclusion
   if [[ "${conclusion}" == "\"success\"" && "${status}" == "\"completed\"" ]]

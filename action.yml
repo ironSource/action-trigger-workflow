@@ -13,7 +13,7 @@ inputs:
     required: true
   ref:
     description: 'The reference of the workflow run. The reference can be a branch, tag, or a commit SHA. (default - "main")'
-    required: fasle
+    required: false
   wait_interval:
     description: "The number of seconds delay between checking for result of run."
     required: false
@@ -35,11 +35,16 @@ inputs:
   wait_workflow:
     description: 'Wait for workflow to finish. default: true'
     required: false
+  monitored_job_name:
+    description: 'Job name to monitor and return job id for'
+    required: false
 outputs:
   workflow_id:
     description: The ID of the workflow that was triggered by this action
   workflow_url:
     description: The URL of the workflow that was triggered by this action
+  job_id:
+    description: The Job Id of the requested job to monitor, if none provided then null.
 runs:
   using: 'docker'
   image: 'Dockerfile'
